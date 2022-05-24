@@ -32,3 +32,5 @@ http.listen (port, async () => {
     return console.warn ('No database url found.')
   Mongoose.connect (process.env.DBURL)
 })
+
+export default app
