@@ -28,11 +28,11 @@ server.listen (port, async () => {
 
   wss.on ('connection', (ws: WebSocket) => {
 
-    ws.send ({
+    ws.send (JSON.stringify ({
       date: new Date (),
       message: 'Welcome to Sharpcodes Backend',
       type: 'onConnect'
-    } as ServerSocketOutgoingMessagePacketProps <string>)
+    } as ServerSocketOutgoingMessagePacketProps <string>))
 
   })
 

@@ -35,11 +35,11 @@ app.use(UserInfo_1.default);
 app.use(MainRouter_1.default);
 server.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     wss.on('connection', (ws) => {
-        ws.send({
+        ws.send(JSON.stringify({
             date: new Date(),
             message: 'Welcome to Sharpcodes Backend',
             type: 'onConnect'
-        });
+        }));
     });
     console.log(`Running... ${ip_1.default.address()}:${port}`);
     if (!process.env.DBURL)
