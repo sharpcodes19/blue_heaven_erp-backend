@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express'
 import Path from 'path'
-import postVisitorInfo from '../controllers/visitor/post'
+import postAsync from '../controllers/visitor/post'
 
-const rootRouter: Router = Router()
+const router: Router = Router()
 
-rootRouter.get('/', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response) => {
 	if (req.visitor) {
-		postVisitorInfo(req.visitor)
+		postAsync(req.visitor)
 		console.log('Visitor information has been recorded.')
 	} else {
 		console.warn('Someone visited but does not find GEO information. IP Address:', req.ip)
@@ -14,4 +14,4 @@ rootRouter.get('/', (req: Request, res: Response) => {
 	res.sendFile(Path.join(__dirname, '../public'))
 })
 
-export default rootRouter
+export default router

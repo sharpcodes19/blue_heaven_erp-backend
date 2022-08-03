@@ -1,6 +1,6 @@
 import Mongoose from 'mongoose'
 
-const VisitorInforSchema = new Mongoose.Schema<VisitorProps>(
+const schema = new Mongoose.Schema<VisitorProps>(
 	{
 		city: String,
 		regionName: String,
@@ -21,4 +21,4 @@ const VisitorInforSchema = new Mongoose.Schema<VisitorProps>(
 	}
 )
 
-export default VisitorInforSchema
+export default schema

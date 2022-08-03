@@ -54,3 +54,14 @@ type VisitorProps = {
 	timezone: string
 	zip: string
 }
+
+type CustomerProps = {
+	name: string
+	tin: string
+	email: string
+	contact: string
+	address: string
+	discount: number
+	status: string
+	remarks: string
+}

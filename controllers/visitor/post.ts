@@ -1,8 +1,8 @@
-import VisitorInfoModel from '../../models/visitor_info'
+import model from '../../models/visitor_info'
 
-const postVisitorInfo = (data: VisitorProps) => {
-	const entry = new VisitorInfoModel(data)
+const postAsync = (data: VisitorProps) => {
+	const entry = new model(data)
 	entry.save()
 }
 
-export default postVisitorInfo
+export default postAsync
