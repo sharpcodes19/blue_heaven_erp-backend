@@ -12,42 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const ip_1 = __importDefault(require("ip"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const ws_1 = __importDefault(require("ws"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const express_useragent_1 = __importDefault(require("express-useragent"));
-const UserInfo_1 = __importDefault(require("./middlewares/UserInfo"));
-const MainRouter_1 = __importDefault(require("./routes/MainRouter"));
+const socket_io_1 = require("socket.io");
+const root_1 = __importDefault(require("./routers/root"));
+const socket_1 = __importDefault(require("./socket"));
+const visitor_info_1 = __importDefault(require("./middlewares/visitor_info"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = +(process.env.PORT || 28174);
 const server = http_1.default.createServer(app);
-const wss = new ws_1.default.Server({ server });
-app.use((0, cors_1.default)());
+const io = new socket_io_1.Server(server, {
+    cors: {
+        origin: process.env.CORS_ORIGIN
+    }
+});
+app.use((0, cors_1.default)({
+    origin: process.env.CORS_ORIGIN
+}));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use(express_useragent_1.default.express());
-app.use(UserInfo_1.default);
-app.use(MainRouter_1.default);
+app.use(express_1.default.static(process.env.PUBLIC_FOLDER_PATH));
+// routes
+app.use('/', visitor_info_1.default, root_1.default);
 server.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    wss.on('connection', (ws) => {
-        ws.send(JSON.stringify({
-            date: new Date(),
-            message: 'Welcome to Sharpcodes Backend',
-            type: 'onConnect'
-        }));
-    });
-    console.log(`Running... ${ip_1.default.address()}:${port}`);
-    if (!process.env.DBURL)
-        return console.warn('No database url found.');
-    mongoose_1.default.connect(process.env.DBURL, (err) => {
+    console.log(`Listening at port`, port);
+    mongoose_1.default.connect(process.env.NODE_ENV === 'production' ? process.env.DBURL : 'mongodb://127.0.0.1:27017/blue-heavens-erp', (err) => {
         if (err)
             return console.error('Database error:', err);
         console.log('Database connected.');
+        (0, socket_1.default)(io);
+        console.log('Socket initialized.');
     });
 }));
 exports.default = app;

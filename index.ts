@@ -1,50 +1,47 @@
-import IP from 'ip'
 import HTTP from 'http'
-import CORS from 'cors'
-import WebSocket from 'ws'
-import DotEnv from 'dotenv'
-import Express from 'express'
+import cors from 'cors'
+import dotEnv from 'dotenv'
+import express, { Express } from 'express'
 import Mongoose from 'mongoose'
-import UserAgent from 'express-useragent'
-import UserInfo from './middlewares/UserInfo'
-import MainRouter from './routes/MainRouter'
-import { ServerSocketOutgoingMessagePacketProps } from './socket/Serializer'
+import { Server } from 'socket.io'
+import rootRouter from './routers/root'
+import useSocket from './socket'
+import visitorInfo from './middlewares/visitor_info'
 
-DotEnv.config ()
+dotEnv.config()
 
-const app: Express.Express = Express ()
+const app: Express = express()
 const port: number | undefined = +(process.env.PORT || 28174)
-const server: HTTP.Server = HTTP.createServer (app)
-const wss: WebSocket.Server = new WebSocket.Server ({ server })
+const server: HTTP.Server = HTTP.createServer(app)
+const io = new Server<ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData>(server, {
+	cors: {
+		origin: process.env.CORS_ORIGIN
+	}
+})
 
-app.use (CORS ())
-app.use (Express.json ())
-app.use (Express.urlencoded ({ extended: true }))
-app.use (UserAgent.express ())
-app.use (UserInfo)
-app.use (MainRouter)
+app.use(
+	cors({
+		origin: process.env.CORS_ORIGIN
+	})
+)
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
 
-server.listen (port, async () => {
+// routes
+app.use('/', visitorInfo, rootRouter)
 
-  wss.on ('connection', (ws: WebSocket) => {
-
-    ws.send (JSON.stringify ({
-      date: new Date (),
-      message: 'Welcome to Sharpcodes Backend',
-      type: 'onConnect'
-    } as ServerSocketOutgoingMessagePacketProps <string>))
-
-  })
-
-  console.log (`Running... ${ IP.address () }:${ port }`)
-  if (!process.env.DBURL)
-    return console.warn ('No database url found.')
-
-  Mongoose.connect (process.env.DBURL, (err) => {
-    if (err)
-      return console.error ('Database error:', err)
-    console.log ('Database connected.')
-  })
+server.listen(port, async () => {
+	console.log(`Listening at port`, port)
+	Mongoose.connect(
+		process.env.NODE_ENV === 'production' ? process.env.DBURL! : 'mongodb://127.0.0.1:27017/blue-heavens-erp',
+		(err) => {
+			if (err) return console.error('Database error:', err)
+			console.log('Database connected.')
+			useSocket(io)
+			console.log('Socket initialized.')
+		}
+	)
 })
 
 export default app
