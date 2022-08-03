@@ -19,12 +19,24 @@ const getByIdAsync = async (
 	const { from, to, sort } = query
 	const { _id } = params
 
-	const packet: Array<CustomerProps> = await findAsync(_id, from, to, sort)
-	return res.send({
-		date: new Date(),
-		message: `Transactions of ${_id} from ${from} to ${to}`,
-		packet: packet[0]
-	})
+	try {
+		const packet: Array<CustomerProps> = await findAsync(_id, from, to, sort)
+		if (!packet.length)
+			return res.status(403).send({
+				date: new Date(),
+				message: `Customer with ID of ${_id} from was not found.`
+			})
+		return res.send({
+			date: new Date(),
+			message: `Customer with ID of ${_id} from ${from} to ${to}`,
+			packet: packet[0]
+		})
+	} catch (err) {
+		res.status(500).send({
+			date: new Date(),
+			message: 'Server error. Please debug the system to see what problems were occuring.'
+		})
+	}
 }
 
 const getAllAsync = async (
@@ -34,12 +46,19 @@ const getAllAsync = async (
 	const { query } = req
 	const { from, to, sort } = query
 
-	const packet: Array<CustomerProps> = await findAsync(undefined, from, to, sort)
-	return res.send({
-		date: new Date(),
-		message: `Transactions from ${from} to ${to}`,
-		packet
-	})
+	try {
+		const packet: Array<CustomerProps> = await findAsync(undefined, from, to, sort)
+		res.send({
+			date: new Date(),
+			message: `Transactions from ${from} to ${to}`,
+			packet
+		})
+	} catch (err) {
+		res.status(500).send({
+			date: new Date(),
+			message: 'Server error. Please debug the system to see what problems were occuring.'
+		})
+	}
 }
 
 export { getByIdAsync, getAllAsync }
