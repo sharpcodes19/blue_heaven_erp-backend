@@ -67,6 +67,7 @@ type CustomerProps = {
 	csvSource?: string
 	updatedAt?: Date
 	createdAt?: Date
+	orders?: Array<string>
 }
 
 type RawMaterialProps = {
@@ -88,15 +89,26 @@ type FinishedProductProps = {
 	type: string
 	size: string
 	threadType: string
-	threadLength: string
+	threadLength: Array<String>
 	finishType: string
 	weight: number
-	length: number
-	width: number
+	length: string
+	width: string
 	cutLength: number
-	holes: number
-	holeSizes: number
+	holeQuantity: number
+	holeSizes: Array<number>
 	price: number
 	quantity: number
 	remarks: string
+	lead: string
+	createdAt?: Date
+	updatedAt?: Date
+	csvSource?: string
+	dueDate: string
+	orderItemId: string
+	quotationId: string
+}
+
+type OrderProps = {
+	id: string
 }

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import uploadFiles from '../../controllers/file/upload'
-import parser from './csv/parser'
-import postCallback from './post'
+import parser from '../../controllers/customer/csv/parser'
+import postCallback from '../../controllers/customer/post'
 
 const csv = (req: Request, res: Response<ResponseBaseProps<Array<string>>>) => {
 	if (!req.body)
@@ -10,7 +10,7 @@ const csv = (req: Request, res: Response<ResponseBaseProps<Array<string>>>) => {
 			message: 'CSV not found'
 		})
 
-	const upload = uploadFiles('csv', './uploads/csv')
+	const upload = uploadFiles('csv', './uploads/customers/csv')
 	upload(req, res, (err: any) => {
 		if (err) {
 			return res.status(403).send({
@@ -24,7 +24,7 @@ const csv = (req: Request, res: Response<ResponseBaseProps<Array<string>>>) => {
 				postCallback(data, (err, packet) => {})
 			})
 		})
-		res.send({
+		res.status(201).send({
 			date: new Date(),
 			message: 'Successfully parsed.',
 			packet: files.map((file) => file.path)

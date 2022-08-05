@@ -14,7 +14,7 @@ const addOne = async (req: Request<{}, {}, RawMaterialProps>, res: Response<Resp
 				date: new Date(),
 				message: `A problem has been detected while saving your data: ${err.message}`
 			})
-		res.send({
+		res.status(201).send({
 			date: new Date(),
 			message: 'Raw Material successfully added.'
 		})

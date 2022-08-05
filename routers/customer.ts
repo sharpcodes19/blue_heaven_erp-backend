@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { csv } from '../controllers/customer/upload'
+import { csv } from '../handlers/customer/upload'
 import deleteById from '../handlers/customer/delete'
 import { getAll, getById } from '../handlers/customer/get'
 import addOne from '../handlers/customer/post'

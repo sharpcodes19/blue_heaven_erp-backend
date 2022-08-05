@@ -2,25 +2,30 @@ import Mongoose from 'mongoose'
 
 const schema = new Mongoose.Schema<FinishedProductProps>(
 	{
-		name: String,
+		name: {
+			type: String,
+			required: true
+		},
 		type: String,
 		size: String,
 		threadType: String,
-		threadLength: String,
+		threadLength: [{ type: String }],
 		finishType: String,
 		weight: Number,
-		length: Number,
-		width: Number,
+		length: String,
+		width: String,
 		cutLength: Number,
-		holes: Number,
-		holeSizes: Number,
+		holeQuantity: Number,
+		holeSizes: [{ type: Number }],
 		price: Number,
 		quantity: Number,
 		remarks: String,
-		id: {
-			type: String,
-			unique: true
-		}
+		csvSource: String,
+		lead: String,
+		orderItemId: String,
+		quotationId: String,
+		dueDate: String,
+		id: String
 	},
 	{
 		timestamps: true

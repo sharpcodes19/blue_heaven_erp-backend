@@ -14,7 +14,7 @@ const addOne = async (req: Request<{}, {}, CustomerProps>, res: Response<Respons
 				date: new Date(),
 				message: `A problem has been detected while saving your data: ${err.message}`
 			})
-		res.send({
+		res.status(201).send({
 			date: new Date(),
 			message: 'Customer successfully added.'
 		})
