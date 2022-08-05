@@ -64,6 +64,9 @@ type CustomerProps = {
 	discount: number
 	status: string
 	remarks: string
+	csvSource?: string
+	updatedAt?: Date
+	createdAt?: Date
 }
 
 type RawMaterialProps = {

@@ -9,7 +9,8 @@ const schema = new Mongoose.Schema<CustomerProps>(
 		name: String,
 		remarks: String,
 		status: String,
-		tin: String
+		tin: String,
+		csvSource: String
 	},
 	{
 		timestamps: true

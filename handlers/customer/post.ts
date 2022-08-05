@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import postCallback from '../../controllers/customer/post'
 
-const addCustomerAsync = async (req: Request<{}, {}, CustomerProps>, res: Response<ResponseBaseProps>) => {
+const addOne = async (req: Request<{}, {}, CustomerProps>, res: Response<ResponseBaseProps>) => {
 	if (!req.body || !req.body.name)
 		return res.status(400).send({
 			date: new Date(),
@@ -21,4 +21,4 @@ const addCustomerAsync = async (req: Request<{}, {}, CustomerProps>, res: Respon
 	})
 }
 
-export default addCustomerAsync
+export default addOne

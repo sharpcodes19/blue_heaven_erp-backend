@@ -11,7 +11,7 @@ type Params = {
 	_id: string
 }
 
-const getByIdAsync = async (
+const getById = async (
 	req: Request<Params, unknown, unknown, Query>,
 	res: Response<ResponseBaseProps<CustomerProps>>
 ) => {
@@ -39,7 +39,7 @@ const getByIdAsync = async (
 	}
 }
 
-const getAllAsync = async (
+const getAll = async (
 	req: Request<{}, unknown, unknown, Query>,
 	res: Response<ResponseBaseProps<Array<CustomerProps>>>
 ) => {
@@ -61,4 +61,4 @@ const getAllAsync = async (
 	}
 }
 
-export { getByIdAsync, getAllAsync }
+export { getById, getAll }

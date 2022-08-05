@@ -5,10 +5,7 @@ type Params = {
 	_id: string
 }
 
-const updateCustomerAsync = async (
-	req: Request<Params, {}, CustomerProps>,
-	res: Response<ResponseBaseProps<CustomerProps>>
-) => {
+const updateById = async (req: Request<Params, {}, CustomerProps>, res: Response<ResponseBaseProps<CustomerProps>>) => {
 	const { _id } = req.params
 
 	if (!_id)
@@ -37,4 +34,4 @@ const updateCustomerAsync = async (
 	})
 }
 
-export default updateCustomerAsync
+export default updateById

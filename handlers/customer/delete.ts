@@ -5,7 +5,7 @@ type Params = {
 	_id: string
 }
 
-const deleteOneAsync = async (req: Request<Params>, res: Response<ResponseBaseProps>) => {
+const deleteById = async (req: Request<Params>, res: Response<ResponseBaseProps>) => {
 	const { _id } = req.params
 	if (!_id)
 		return res.status(400).send({
@@ -28,4 +28,4 @@ const deleteOneAsync = async (req: Request<Params>, res: Response<ResponseBasePr
 	}
 }
 
-export default deleteOneAsync
+export default deleteById
