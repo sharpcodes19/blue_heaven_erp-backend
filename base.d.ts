@@ -78,3 +78,22 @@ type RawMaterialProps = {
 	deliveredDate: Date
 	remarks: string
 }
+
+type FinishedProductProps = {
+	id: string
+	name: string
+	type: string
+	size: string
+	threadType: string
+	threadLength: string
+	finishType: string
+	weight: number
+	length: number
+	width: number
+	cutLength: number
+	holes: number
+	holeSizes: number
+	price: number
+	quantity: number
+	remarks: string
+}

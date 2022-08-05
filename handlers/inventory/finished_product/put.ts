@@ -1,20 +1,20 @@
 import { Request, Response } from 'express'
-import putCallback from '../../../controllers/inventory/raw_material/put'
+import putCallback from '../../../controllers/inventory/finished_product/put'
 
 type Params = {
 	_id: string
 }
 
 const updateById = async (
-	req: Request<Params, {}, RawMaterialProps>,
-	res: Response<ResponseBaseProps<RawMaterialProps>>
+	req: Request<Params, {}, FinishedProductProps>,
+	res: Response<ResponseBaseProps<FinishedProductProps>>
 ) => {
 	const { _id } = req.params
 
 	if (!_id)
 		return res.status(400).send({
 			date: new Date(),
-			message: 'Cannot determine which raw material should modify.'
+			message: 'Cannot determine which finished product should modify.'
 		})
 
 	if (!req.body)
@@ -31,7 +31,7 @@ const updateById = async (
 			})
 		res.send({
 			date: new Date(),
-			message: 'Raw material successfully updated.',
+			message: 'Finished product successfully updated.',
 			packet: packet
 		})
 	})

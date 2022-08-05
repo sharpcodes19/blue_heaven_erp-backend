@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import postCallback from '../../../controllers/inventory/raw_material/post'
+import postCallback from '../../../controllers/inventory/finished_product/post'
 
-const addOne = async (req: Request<{}, {}, RawMaterialProps>, res: Response<ResponseBaseProps>) => {
+const addOne = async (req: Request<{}, {}, FinishedProductProps>, res: Response<ResponseBaseProps>) => {
 	if (!req.body || !req.body.name)
 		return res.status(400).send({
 			date: new Date(),
@@ -16,7 +16,7 @@ const addOne = async (req: Request<{}, {}, RawMaterialProps>, res: Response<Resp
 			})
 		res.send({
 			date: new Date(),
-			message: 'Raw Material successfully added.'
+			message: 'Finished Product successfully added.'
 		})
 	})
 }

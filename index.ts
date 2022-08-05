@@ -7,7 +7,7 @@ import { Server } from 'socket.io'
 import rootRouter from './routers/root'
 import useSocket from './socket'
 import customerRouter from './routers/customer'
-import inventoryRouter from './routers/inventory'
+import inventoryRouter from './routers/inventory/inventory_router'
 import visitorInfo from './middlewares/visitor_info'
 
 dotEnv.config()

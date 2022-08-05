@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { findAsync } from '../../../controllers/inventory/raw_material/get'
+import { findAsync } from '../../../controllers/inventory/finished_product/get'
 
 type Query = {
 	from?: string
@@ -13,22 +13,22 @@ type Params = {
 
 const getById = async (
 	req: Request<Params, unknown, unknown, Query>,
-	res: Response<ResponseBaseProps<RawMaterialProps>>
+	res: Response<ResponseBaseProps<FinishedProductProps>>
 ) => {
 	const { query, params } = req
 	const { from, to, sort } = query
 	const { _id } = params
 
 	try {
-		const packet: Array<RawMaterialProps> = await findAsync(_id, from, to, sort)
+		const packet: Array<FinishedProductProps> = await findAsync(_id, from, to, sort)
 		if (!packet.length)
 			return res.status(403).send({
 				date: new Date(),
-				message: `Raw material with ID of ${_id} from was not found.`
+				message: `Finished product with ID of ${_id} from was not found.`
 			})
 		return res.send({
 			date: new Date(),
-			message: `Raw material with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
+			message: `Finished product with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
 			packet: packet[0]
 		})
 	} catch (err) {
@@ -41,16 +41,16 @@ const getById = async (
 
 const getAll = async (
 	req: Request<{}, unknown, unknown, Query>,
-	res: Response<ResponseBaseProps<Array<RawMaterialProps>>>
+	res: Response<ResponseBaseProps<Array<FinishedProductProps>>>
 ) => {
 	const { query } = req
 	const { from, to, sort } = query
 
 	try {
-		const packet: Array<RawMaterialProps> = await findAsync(undefined, from, to, sort)
+		const packet: Array<FinishedProductProps> = await findAsync(undefined, from, to, sort)
 		res.send({
 			date: new Date(),
-			message: `Raw materials from ${from || 'beginning'} to ${to || 'end'}`,
+			message: `Finished products from ${from || 'beginning'} to ${to || 'end'}`,
 			packet
 		})
 	} catch (err) {

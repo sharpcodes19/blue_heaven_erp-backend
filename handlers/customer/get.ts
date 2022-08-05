@@ -50,7 +50,7 @@ const getAllAsync = async (
 		const packet: Array<CustomerProps> = await findAsync(undefined, from, to, sort)
 		res.send({
 			date: new Date(),
-			message: `Transactions from ${from || 'beginning'} to ${to || 'end'}`,
+			message: `Customers from ${from || 'beginning'} to ${to || 'end'}`,
 			packet
 		})
 	} catch (err) {
