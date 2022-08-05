@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { findAsync } from '../../controllers/customer/get'
+import { findAsync } from '../../../controllers/inventory/raw_material/get'
 
 type Query = {
 	from?: string
@@ -13,22 +13,22 @@ type Params = {
 
 const getByIdAsync = async (
 	req: Request<Params, unknown, unknown, Query>,
-	res: Response<ResponseBaseProps<CustomerProps>>
+	res: Response<ResponseBaseProps<RawMaterialProps>>
 ) => {
 	const { query, params } = req
 	const { from, to, sort } = query
 	const { _id } = params
 
 	try {
-		const packet: Array<CustomerProps> = await findAsync(_id, from, to, sort)
+		const packet: Array<RawMaterialProps> = await findAsync(_id, from, to, sort)
 		if (!packet.length)
 			return res.status(403).send({
 				date: new Date(),
-				message: `Customer with ID of ${_id} from was not found.`
+				message: `Raw material with ID of ${_id} from was not found.`
 			})
 		return res.send({
 			date: new Date(),
-			message: `Customer with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
+			message: `Raw material with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
 			packet: packet[0]
 		})
 	} catch (err) {
@@ -41,13 +41,13 @@ const getByIdAsync = async (
 
 const getAllAsync = async (
 	req: Request<{}, unknown, unknown, Query>,
-	res: Response<ResponseBaseProps<Array<CustomerProps>>>
+	res: Response<ResponseBaseProps<Array<RawMaterialProps>>>
 ) => {
 	const { query } = req
 	const { from, to, sort } = query
 
 	try {
-		const packet: Array<CustomerProps> = await findAsync(undefined, from, to, sort)
+		const packet: Array<RawMaterialProps> = await findAsync(undefined, from, to, sort)
 		res.send({
 			date: new Date(),
 			message: `Transactions from ${from || 'beginning'} to ${to || 'end'}`,

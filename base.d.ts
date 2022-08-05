@@ -65,3 +65,16 @@ type CustomerProps = {
 	status: string
 	remarks: string
 }
+
+type RawMaterialProps = {
+	id: string
+	name: string
+	type: string
+	diameter: string
+	weight: number
+	price: number
+	quantity: number
+	orderDate: Date
+	deliveredDate: Date
+	remarks: string
+}

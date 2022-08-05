@@ -7,6 +7,7 @@ import { Server } from 'socket.io'
 import rootRouter from './routers/root'
 import useSocket from './socket'
 import customerRouter from './routers/customer'
+import inventoryRouter from './routers/inventory'
 import visitorInfo from './middlewares/visitor_info'
 
 dotEnv.config()
@@ -32,6 +33,7 @@ app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
 // routes
 app.use('/', visitorInfo, rootRouter)
 app.use('/customer', customerRouter)
+app.use('/inventory', inventoryRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port)

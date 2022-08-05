@@ -1,8 +1,6 @@
+import { Callback } from 'mongoose'
 import model from '../../models/customer'
 
-const postAsync = async (customer: CustomerProps) => {
-	const entry = new model(customer)
-	entry.save()
-}
+const postCallback = (data: CustomerProps, cb: Callback<CustomerProps>) => model.create(data, cb)
 
-export default postAsync
+export default postCallback
