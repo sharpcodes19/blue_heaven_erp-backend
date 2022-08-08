@@ -24,8 +24,7 @@ const schema = new Mongoose.Schema<FinishedProductProps>(
 		lead: String,
 		orderItemId: String,
 		quotationId: String,
-		dueDate: String,
-		id: String
+		dueDate: String
 	},
 	{
 		timestamps: true

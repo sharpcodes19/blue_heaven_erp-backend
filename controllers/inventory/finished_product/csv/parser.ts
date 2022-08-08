@@ -22,6 +22,9 @@ const parser = (
 			toLine
 		})
 			.on('data', (row) => {
+				const threadLengths = JSON.parse(row[16])
+				const threadLength = threadLengths.filter((item: any) => item['S']).map((item: any) => item.S) || []
+
 				cb(null, {
 					createdAt: Moment(row[3]).toDate(),
 					updatedAt: Moment(row[23]).toDate(),
@@ -32,14 +35,14 @@ const parser = (
 					cutLength: isNaN(row[6]) ? 0 : row[6],
 					holeQuantity: isNaN(row[8]) ? 0 : row[8],
 					holeSizes: [0], // row[9],
-					id: row[0],
+					// id: row[0],
 					length: row[11],
 					name: row[12],
 					price: isNaN(row[5]) ? 0 : row[5],
 					quantity: isNaN(row[14]) ? 0 : row[14],
 					remarks: row[22],
 					size: row[15],
-					threadLength: row[16],
+					threadLength,
 					threadType: row[17],
 					weight: isNaN(row[19]) ? 0 : row[19],
 					lead: row[10],

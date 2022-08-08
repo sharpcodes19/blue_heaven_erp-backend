@@ -84,7 +84,7 @@ type RawMaterialProps = {
 }
 
 type FinishedProductProps = {
-	id: string
+	_id?: string
 	name: string
 	type: string
 	size: string
