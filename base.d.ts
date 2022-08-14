@@ -81,6 +81,8 @@ type RawMaterialProps = {
 	orderDate: Date
 	deliveredDate: Date
 	remarks: string
+	createdAt?: Date
+	updatedAt?: Date
 }
 
 type FinishedProductProps = {
