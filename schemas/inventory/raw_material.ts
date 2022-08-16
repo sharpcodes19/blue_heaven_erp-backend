@@ -12,8 +12,7 @@ const schema = new Mongoose.Schema<RawMaterialProps>(
 		deliveredDate: Date,
 		remarks: String,
 		id: {
-			type: String,
-			unique: true
+			type: String
 		}
 	},
 	{
