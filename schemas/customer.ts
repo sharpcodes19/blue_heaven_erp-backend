@@ -20,7 +20,8 @@ const schema = new Mongoose.Schema<CustomerProps>(
 			required: true
 		},
 		csvSource: String,
-		orders: [{ type: String }] // array of ids
+		orders: [{ type: String }], // array of ids
+		sourceId: String
 	},
 	{
 		timestamps: true

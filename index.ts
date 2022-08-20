@@ -6,6 +6,7 @@ import Mongoose from 'mongoose'
 import { Server } from 'socket.io'
 import rootRouter from './routers/root'
 import useSocket from './socket'
+import orderRouter from './routers/order'
 import customerRouter from './routers/customer'
 import inventoryRouter from './routers/inventory/inventory_router'
 import visitorInfo from './middlewares/visitor_info'
@@ -34,6 +35,7 @@ app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
 app.use('/', visitorInfo, rootRouter)
 app.use('/customer', customerRouter)
 app.use('/inventory', inventoryRouter)
+app.use('/order', orderRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port)

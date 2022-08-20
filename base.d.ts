@@ -68,6 +68,7 @@ type CustomerProps = {
 	updatedAt?: Date
 	createdAt?: Date
 	orders?: Array<string>
+	sourceId?: string
 }
 
 type RawMaterialProps = {
@@ -111,6 +112,30 @@ type FinishedProductProps = {
 	quotationId: string
 }
 
+type PaymentProps = {
+	date: Date
+	amount: number
+	balance: number
+	cost: number
+	ewt: number
+	freightCost: number
+	mode: string // payment type
+}
+
+type DeliverProps = {
+	address: string
+	date: Date
+	remarks: string
+}
+
 type OrderProps = {
-	id: string
+	items: Array<FinishedProductProps>
+	customer: CustomerProps
+	_id?: string
+	status: Array<string>
+	invoiceNumber: string
+	payment: PaymentProps
+	delivery: DeliverProps
+	createdAt?: Date
+	updatedAt?: Date
 }

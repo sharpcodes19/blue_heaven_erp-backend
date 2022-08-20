@@ -30,7 +30,8 @@ const parser = ({ delimiter, fromLine, path, toLine }: Props, cb: (transaction: 
 					status: '',
 					tin: row[8],
 					createdAt: row[2] ? Moment(row[2]).toDate() : undefined,
-					updatedAt: row[9] ? Moment(row[9]).toDate() : undefined
+					updatedAt: row[9] ? Moment(row[9]).toDate() : undefined,
+					sourceId: row[0]
 				})
 			})
 			.on('error', (err) => {
