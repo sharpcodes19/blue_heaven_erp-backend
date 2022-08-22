@@ -130,7 +130,7 @@ type DeliverProps = {
 
 type OrderProps = {
 	items: Array<FinishedProductProps>
-	customer: CustomerProps
+	customerId: string
 	_id?: string
 	status: Array<string>
 	invoiceNumber: string

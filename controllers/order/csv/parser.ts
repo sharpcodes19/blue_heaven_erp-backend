@@ -34,7 +34,7 @@ const parser = (
 					cb(null, {
 						createdAt: row[2] ? Moment(row[3]).toDate() : undefined,
 						updatedAt: row[9] ? Moment(row[17]).toDate() : undefined,
-						customer,
+						customerId,
 						delivery: {
 							address: row[6],
 							date: row[5],

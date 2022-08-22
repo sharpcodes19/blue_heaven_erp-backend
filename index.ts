@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
 
 // routes
-app.use('/', visitorInfo, rootRouter)
+// app.use('/', visitorInfo, rootRouter)
 app.use('/customer', customerRouter)
 app.use('/inventory', inventoryRouter)
 app.use('/order', orderRouter)
