@@ -38,11 +38,9 @@ app.use('/inventory', inventoryRouter)
 app.use('/order', orderRouter)
 
 server.listen(port, async () => {
-	console.log(`Listening at port`, port)
+	console.log(`Listening at port`, port, process.env.NODE_ENV)
 	Mongoose.connect(
-		process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev'
-			? 'mongodb://localhost:27017/blue-heavens-erp'
-			: process.env.DBURL!,
+		process.env.NODE_ENV !== 'production' ? 'mongodb://localhost:27017/blue-heavens-erp' : process.env.DBURL!,
 		(err) => {
 			if (err) return console.error('Database error:', err)
 			console.log('Database connected.')
