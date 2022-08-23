@@ -16,7 +16,7 @@ const schema = new Mongoose.Schema<FinishedProductProps>(
 		width: String,
 		cutLength: Number,
 		holeQuantity: Number,
-		holeSizes: [{ type: Number }],
+		holeSizes: [{ type: String }],
 		price: Number,
 		quantity: Number,
 		remarks: String,
