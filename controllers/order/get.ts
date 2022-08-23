@@ -4,6 +4,7 @@ import model from '../../models/order'
 const findAsync = async (_id?: string, from?: string, to?: string, sort?: string): Promise<Array<OrderProps>> => {
 	return model
 		.find({
+			'items.0': { $gt: 0 },
 			$and: [
 				from
 					? {
