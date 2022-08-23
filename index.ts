@@ -39,15 +39,12 @@ app.use('/order', orderRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port)
-	Mongoose.connect(
-		process.env.NODE_ENV === 'production' ? process.env.DBURL! : 'mongodb://127.0.0.1:27017/blue-heavens-erp',
-		(err) => {
-			if (err) return console.error('Database error:', err)
-			console.log('Database connected.')
-			useSocket(io)
-			console.log('Socket initialized.')
-		}
-	)
+	Mongoose.connect(process.env.DBURL!, (err) => {
+		if (err) return console.error('Database error:', err)
+		console.log('Database connected.')
+		useSocket(io)
+		console.log('Socket initialized.')
+	})
 })
 
 export default app
