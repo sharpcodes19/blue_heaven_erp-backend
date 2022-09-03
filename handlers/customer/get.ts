@@ -32,6 +32,7 @@ const getById = async (
 			packet: packet[0]
 		})
 	} catch (err) {
+		console.error(err)
 		res.status(500).send({
 			date: new Date(),
 			message: 'Server error. Please debug the system to see what problems were occuring.'
@@ -54,6 +55,7 @@ const getAll = async (
 			packet
 		})
 	} catch (err) {
+		console.error(err)
 		res.status(500).send({
 			date: new Date(),
 			message: 'Server error. Please debug the system to see what problems were occuring.'
