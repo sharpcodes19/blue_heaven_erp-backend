@@ -27,9 +27,9 @@ const addOne = async (req: Request<{}, {}, UserProps>, res: Response<ResponseBas
 	})
 }
 
-const login = async (req: Request<unknown, unknown, unknown, LoginBody>, res: Response<ResponseBaseProps<boolean>>) => {
-	const { query } = req
-	const { username, password } = query
+const login = async (req: Request<unknown, unknown, LoginBody, {}>, res: Response<ResponseBaseProps<boolean>>) => {
+	const { body } = req
+	const { username, password } = body
 
 	try {
 		const packet: boolean = await signInAsync(username, password)
