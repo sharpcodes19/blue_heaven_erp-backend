@@ -11,29 +11,6 @@ type Params = {
 	_id: string
 }
 
-const loginByCredential = async (
-	req: Request<unknown, unknown, unknown, { username: string; password: string }>,
-	res: Response<ResponseBaseProps<boolean>>
-) => {
-	const { query } = req
-	const { username, password } = query
-
-	try {
-		const packet: boolean = await signInAsync(username, password)
-		return res.send({
-			date: new Date(),
-			message: packet ? `Welcome ${username}` : 'Invalid credentials',
-			packet
-		})
-	} catch (err) {
-		console.error(err)
-		return res.status(500).send({
-			date: new Date(),
-			message: 'Please try to log-in later.'
-		})
-	}
-}
-
 const getById = async (req: Request<Params, unknown, unknown, Query>, res: Response<ResponseBaseProps<UserProps>>) => {
 	const { query, params } = req
 	const { from, to, sort } = query
@@ -83,4 +60,4 @@ const getAll = async (
 	}
 }
 
-export { getById, getAll, loginByCredential }
+export { getById, getAll }

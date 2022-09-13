@@ -1,5 +1,11 @@
 import { Request, Response } from 'express'
+import { signInAsync } from '../../controllers/user/get'
 import postCallback from '../../controllers/user/post'
+
+type LoginBody = {
+	username: string
+	password: string
+}
 
 const addOne = async (req: Request<{}, {}, UserProps>, res: Response<ResponseBaseProps>) => {
 	if (!req.body)
@@ -21,4 +27,24 @@ const addOne = async (req: Request<{}, {}, UserProps>, res: Response<ResponseBas
 	})
 }
 
-export default addOne
+const login = async (req: Request<unknown, unknown, unknown, LoginBody>, res: Response<ResponseBaseProps<boolean>>) => {
+	const { query } = req
+	const { username, password } = query
+
+	try {
+		const packet: boolean = await signInAsync(username, password)
+		return res.send({
+			date: new Date(),
+			message: packet ? `Welcome ${username}` : 'Invalid credentials',
+			packet
+		})
+	} catch (err) {
+		console.error(err)
+		return res.status(500).send({
+			date: new Date(),
+			message: 'Please try to log-in later.'
+		})
+	}
+}
+
+export { addOne, login }
