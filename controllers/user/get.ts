@@ -31,7 +31,7 @@ const signInAsync = (username: string, password: string) => {
 		model.findOne({ username }, (error: any, user: UserProps) => {
 			if (error) return reject(`User ${username} not found. ${error}`)
 
-			bcrypt.compare(password, user.password, function (error, isMatch) {
+			bcrypt.compare(password, user?.password, function (error, isMatch) {
 				if (error) return resolve(isMatch)
 
 				resolve(isMatch)
