@@ -4,9 +4,10 @@ import dotEnv from 'dotenv'
 import express, { Express } from 'express'
 import Mongoose from 'mongoose'
 import { Server } from 'socket.io'
-import rootRouter from './routers/root'
+// import rootRouter from './routers/root'
 import useSocket from './socket'
 import orderRouter from './routers/order'
+import userRouter from './routers/user'
 import customerRouter from './routers/customer'
 import inventoryRouter from './routers/inventory/inventory_router'
 import visitorInfo from './middlewares/visitor_info'
@@ -36,6 +37,7 @@ app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
 app.use('/customer', customerRouter)
 app.use('/inventory', inventoryRouter)
 app.use('/order', orderRouter)
+app.use('/user', userRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port, process.env.NODE_ENV)

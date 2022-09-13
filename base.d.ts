@@ -139,3 +139,10 @@ type OrderProps = {
 	createdAt?: Date
 	updatedAt?: Date
 }
+
+type UserProps = {
+	username: string
+	password: string
+	createdAt?: Date
+	updatedAt?: Date
+}
