@@ -27,9 +27,14 @@ const addOne = async (req: Request<{}, {}, UserProps>, res: Response<ResponseBas
 	})
 }
 
-const login = async (req: Request<unknown, unknown, LoginBody, {}>, res: Response<ResponseBaseProps<boolean>>) => {
-	const { body } = req
-	const { username, password } = body
+const login = async (req: Request<unknown, unknown, LoginBody, unknown>, res: Response<ResponseBaseProps<boolean>>) => {
+	if (!req.body)
+		return res.status(400).send({
+			date: new Date(),
+			message: 'No data found.'
+		})
+
+	const { username, password } = req.body
 
 	try {
 		const packet: boolean = await signInAsync(username, password)
