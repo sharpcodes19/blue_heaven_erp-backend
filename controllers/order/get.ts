@@ -8,14 +8,14 @@ const findAsync = async (_id?: string, from?: string, to?: string, sort?: string
 			$and: [
 				from
 					? {
-							'delivery.date': {
+							createdAt: {
 								$gte: Moment(from, process.env.DATE_FORMAT).startOf('day').toDate()
 							}
 					  }
 					: {},
 				to
 					? {
-							'delivery.date': {
+							createdAt: {
 								$lte: Moment(to, process.env.DATE_FORMAT).endOf('day').toDate()
 							}
 					  }

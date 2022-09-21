@@ -129,13 +129,28 @@ type DeliverProps = {
 }
 
 type OrderProps = {
-	items: Array<FinishedProductProps>
-	customerId: string
 	_id?: string
-	status: Array<string>
-	invoiceNumber: string
-	payment: PaymentProps
-	delivery: DeliverProps
+	// quotationId: string
+	orderDate?: Date
+	items: Array<FinishedProductProps>
+	dueDate?: string
+	status?: Array<string>
+	totalCost?: number
+	amountPaid?: number
+	paymentMethod?: string
+	paymentDate?: string
+	ewtAmount?: number
+	balancePayment?: Array<{
+		amount: number
+		paymentMethod?: string
+		paymentDate?: string
+	}>
+	remarks?: string
+	deliveryDate?: string
+	shippingFee?: number
+	deliveryLocation?: string
+	invoiceNumber?: string
+	customerId?: string
 	createdAt?: Date
 	updatedAt?: Date
 }

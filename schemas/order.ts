@@ -1,21 +1,32 @@
 import Mongoose from 'mongoose'
 import FinishedProduct from './inventory/finished_product'
-import Payment from './payment'
-import Deliver from './deliver'
 
 const schema = new Mongoose.Schema<OrderProps>(
 	{
 		items: [{ type: FinishedProduct, default: [] }],
-		customerId: {
-			type: String,
-			required: true
-		},
+		customerId: String,
 		invoiceNumber: Number,
-		payment: {
-			type: Payment
-		},
-		delivery: { type: Deliver },
-		status: [{ type: String }]
+		status: [{ type: String }],
+		orderDate: Date,
+		dueDate: Date,
+		totalCost: Number,
+		amountPaid: Number,
+		paymentMethod: String,
+		paymentDate: String,
+		ewtAmount: Number,
+		balancePayment: [
+			{
+				type: {
+					amount: Number,
+					paymentMethod: String,
+					paymentDate: String
+				}
+			}
+		],
+		remarks: String,
+		deliveryDate: String,
+		shippingFee: Number,
+		deliveryLocation: String
 	},
 	{
 		timestamps: true
