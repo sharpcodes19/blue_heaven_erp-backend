@@ -112,20 +112,14 @@ type FinishedProductProps = {
 	quotationId: string
 }
 
-type PaymentProps = {
-	date: Date
-	amount: number
-	balance: number
-	cost: number
-	ewt: number
-	freightCost: number
-	mode: string // payment type
-}
-
-type DeliverProps = {
-	address: string
-	date: Date
-	remarks: string
+type QuotationProps = {
+	_id?: string
+	items?: Array<FinishedProductProps>
+	label: string
+	customerId: string
+	timeLead?: number
+	updatedAt?: Date
+	createdAt?: Date
 }
 
 type OrderProps = {

@@ -9,6 +9,7 @@ import useSocket from './socket'
 import orderRouter from './routers/order'
 import userRouter from './routers/user'
 import customerRouter from './routers/customer'
+import quotationRouter from './routers/quotation'
 import inventoryRouter from './routers/inventory/inventory_router'
 import visitorInfo from './middlewares/visitor_info'
 
@@ -38,6 +39,7 @@ app.use('/customer', customerRouter)
 app.use('/inventory', inventoryRouter)
 app.use('/order', orderRouter)
 app.use('/user', userRouter)
+app.use('/quotation', quotationRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port, process.env.NODE_ENV)

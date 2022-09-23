@@ -24,9 +24,9 @@ const parser = (
 			toLine
 		})
 			.on('data', async (row) => {
-				const customerId = row[11]
+				// const customerId = row[11]
 				const id = row[0]
-				const customer = await customerModel.findOne({ sourceId: customerId }).exec()
+				// const customer = await customerModel.findOne({ sourceId: customerId }).exec()
 				const items = await finishedProductModel.find({ orderItemId: id }).exec()
 				const status = JSON.parse(row[16])
 
