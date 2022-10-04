@@ -28,10 +28,12 @@
 		"moment": "^2.29.4",
 		"mongoose": "^6.3.4",
 		"multer": "^1.4.5-lts.1",
+		"node-fetch": "^3.2.10",
 		"node-ip-details": "^0.0.7",
 		"path": "^0.12.7",
 		"socket.io": "^4.5.1",
-		"uuid": "^8.3.2"
+		"uuid": "^8.3.2",
+		"xlsx": "^0.18.5"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",

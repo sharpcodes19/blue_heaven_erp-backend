@@ -155,3 +155,22 @@ type UserProps = {
 	createdAt?: Date
 	updatedAt?: Date
 }
+
+type AnchorBoltProps = {
+	diameter?: string
+	steel?: string
+	lengthByInches?: string
+	lengthByMillimeter?: string
+	bend?: string
+	thread?: string
+	price?: string
+	hexNut?: string
+	hexNutPrice?: string
+	hexNutQuantity?: string
+	fW?: string
+	fWPrice?: string
+	fWQuantity?: string
+	totalPerSet?: string
+	totalPrice?: string
+	csvSource?: string
+}

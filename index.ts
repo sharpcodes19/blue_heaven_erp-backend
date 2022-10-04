@@ -10,7 +10,8 @@ import orderRouter from './routers/order'
 import userRouter from './routers/user'
 import customerRouter from './routers/customer'
 import quotationRouter from './routers/quotation'
-import inventoryRouter from './routers/inventory/inventory_router'
+import inventoryRouter from './routers/inventory'
+import productRouter from './routers/products'
 import visitorInfo from './middlewares/visitor_info'
 
 dotEnv.config()
@@ -18,7 +19,12 @@ dotEnv.config()
 const app: Express = express()
 const port: number | undefined = +(process.env.PORT || 28174)
 const server: HTTP.Server = HTTP.createServer(app)
-const io = new Server<ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData>(server, {
+const io = new Server<
+	ServerToClientEvents,
+	ClientToServerEvents,
+	InterServerEvents,
+	SocketData
+>(server, {
 	cors: {
 		origin: process.env.CORS_ORIGIN
 	}
@@ -40,11 +46,14 @@ app.use('/inventory', inventoryRouter)
 app.use('/order', orderRouter)
 app.use('/user', userRouter)
 app.use('/quotation', quotationRouter)
+app.use('/product', productRouter)
 
 server.listen(port, async () => {
 	console.log(`Listening at port`, port, process.env.NODE_ENV)
 	Mongoose.connect(
-		process.env.NODE_ENV !== 'production' ? 'mongodb://localhost:27017/blue-heavens-erp' : process.env.DBURL!,
+		process.env.NODE_ENV !== 'production'
+			? 'mongodb://localhost:27017/blue-heavens-erp'
+			: process.env.DBURL!,
 		(err) => {
 			if (err) return console.error('Database error:', err)
 			console.log('Database connected.')
