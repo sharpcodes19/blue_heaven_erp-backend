@@ -13,6 +13,7 @@ export type AnchorBoltQuery = {
 	thread?: string
 	hexNut?: string
 	fW?: string
+	price?: string
 }
 
 const findAsync = async (
@@ -28,7 +29,8 @@ const findAsync = async (
 		thread,
 		to,
 		hexNut,
-		fW
+		fW,
+		price
 	}: AnchorBoltQuery
 ): Promise<Array<AnchorBoltProps>> => {
 	return model
@@ -58,6 +60,7 @@ const findAsync = async (
 				bend ? { bend } : {},
 				hexNut ? { hexNut } : {},
 				fW ? { fW } : {},
+				price ? { price } : {},
 				_id ? { _id } : {}
 			]
 		})

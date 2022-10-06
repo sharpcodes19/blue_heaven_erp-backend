@@ -49,7 +49,6 @@ const getAll = async (
 ) => {
 	const { query } = req
 	const { from, to } = query
-
 	try {
 		const packet: Array<AnchorBoltProps> = await findAsync(null, query)
 		res.send({
