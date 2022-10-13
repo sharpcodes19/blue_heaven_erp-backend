@@ -26,7 +26,8 @@ const schema = new Mongoose.Schema<OrderProps>(
 		remarks: String,
 		deliveryDate: String,
 		shippingFee: Number,
-		deliveryLocation: String
+		deliveryLocation: String,
+		quotationNumber: String
 	},
 	{
 		timestamps: true

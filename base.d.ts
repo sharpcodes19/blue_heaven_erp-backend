@@ -110,6 +110,13 @@ type FinishedProductProps = {
 	dueDate: string
 	orderItemId: string
 	quotationId: string
+	washer?: string
+	fWPrice?: number
+	fWQuantity?: number
+	hexNut?: string
+	hexNutPrice?: number
+	hexNutQuantity?: number
+	totalPricePerSet?: number
 }
 
 type QuotationProps = {
@@ -147,6 +154,7 @@ type OrderProps = {
 	customerId?: string
 	createdAt?: Date
 	updatedAt?: Date
+	quotationNumber?: string
 }
 
 type UserProps = {
