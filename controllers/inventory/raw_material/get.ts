@@ -1,7 +1,20 @@
 import Moment from 'moment'
 import model from '../../../models/inventory/raw_material'
 
-const findAsync = async (_id?: string, from?: string, to?: string, sort?: string): Promise<Array<RawMaterialProps>> => {
+export type RawMaterialFindKeywords = {
+	_id?: string
+	type?: string
+	diameter?: string
+	weight?: string
+	name?: string
+}
+
+const findAsync = async (
+	{ _id, diameter, type, weight, name }: RawMaterialFindKeywords,
+	from?: string,
+	to?: string,
+	sort?: string
+): Promise<Array<RawMaterialProps>> => {
 	return model
 		.find({
 			$and: [
@@ -19,7 +32,11 @@ const findAsync = async (_id?: string, from?: string, to?: string, sort?: string
 							}
 					  }
 					: {},
-				_id ? { _id } : {}
+				_id ? { _id } : {},
+				diameter ? { diameter } : {},
+				type ? { type } : {},
+				weight ? { weight } : {},
+				name ? { name } : {}
 			]
 		})
 		.sort({ createdAt: sort || 'asc' })

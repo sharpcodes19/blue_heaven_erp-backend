@@ -72,16 +72,16 @@ type CustomerProps = {
 }
 
 type RawMaterialProps = {
-	id: string
-	name: string
-	type: string
-	diameter: string
-	weight: number
-	price: number
-	quantity: number
-	orderDate: Date
-	deliveredDate: Date
-	remarks: string
+	id?: string
+	name?: string
+	type?: string
+	diameter?: string
+	weight?: number
+	price?: number
+	quantity?: number
+	orderDate?: Date
+	deliveredDate?: Date
+	remarks?: string
 	createdAt?: Date
 	updatedAt?: Date
 }

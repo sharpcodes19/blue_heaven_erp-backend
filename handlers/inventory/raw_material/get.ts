@@ -20,7 +20,7 @@ const getById = async (
 	const { _id } = params
 
 	try {
-		const packet: Array<RawMaterialProps> = await findAsync(_id, from, to, sort)
+		const packet: Array<RawMaterialProps> = await findAsync({ _id }, from, to, sort)
 		if (!packet.length)
 			return res.status(403).send({
 				date: new Date(),
@@ -28,7 +28,9 @@ const getById = async (
 			})
 		return res.send({
 			date: new Date(),
-			message: `Raw material with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
+			message: `Raw material with ID of ${_id} from ${from || 'beginning'} to ${
+				to || 'end'
+			}`,
 			packet: packet[0]
 		})
 	} catch (err) {
@@ -47,7 +49,7 @@ const getAll = async (
 	const { from, to, sort } = query
 
 	try {
-		const packet: Array<RawMaterialProps> = await findAsync(undefined, from, to, sort)
+		const packet: Array<RawMaterialProps> = await findAsync({}, from, to, sort)
 		res.send({
 			date: new Date(),
 			message: `Raw materials from ${from || 'beginning'} to ${to || 'end'}`,
