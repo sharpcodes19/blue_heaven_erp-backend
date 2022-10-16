@@ -99,7 +99,7 @@ type FinishedProductProps = {
 	width: string
 	cutLength: number
 	holeQuantity: number
-	holeSizes: Array<number>
+	holeSizes: Array<string>
 	price: number
 	quantity: number
 	remarks: string
