@@ -14,7 +14,7 @@ const schema = new Mongoose.Schema<FinishedProductProps>(
 		weight: Number,
 		length: String,
 		width: String,
-		cutLength: String,
+		cutLength: Number,
 		holeQuantity: Number,
 		holeSizes: [{ type: String }],
 		price: Number,
@@ -31,7 +31,17 @@ const schema = new Mongoose.Schema<FinishedProductProps>(
 		hexNut: String,
 		hexNutPrice: Number,
 		hexNutQuantity: Number,
-		totalPricePerSet: Number
+		totalPricePerSet: Number,
+		materials: [
+			{
+				_id: {
+					type: String,
+					required: true
+				},
+				name: String,
+				quantity: Number
+			}
+		]
 	},
 	{
 		timestamps: true

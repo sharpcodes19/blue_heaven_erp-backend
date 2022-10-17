@@ -117,6 +117,11 @@ type FinishedProductProps = {
 	hexNutPrice?: number
 	hexNutQuantity?: number
 	totalPricePerSet?: number
+	materials?: Array<{
+		_id?: string // raw material _id
+		name?: string
+		quantity?: number
+	}>
 }
 
 type QuotationProps = {
