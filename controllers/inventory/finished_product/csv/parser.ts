@@ -23,7 +23,8 @@ const parser = (
 		})
 			.on('data', (row) => {
 				const threadLengths = JSON.parse(row[16])
-				const threadLength = threadLengths.filter((item: any) => item['S']).map((item: any) => item.S) || []
+				const threadLength =
+					threadLengths.filter((item: any) => item['S']).map((item: any) => item.S) || []
 
 				cb(null, {
 					createdAt: Moment(row[3]).toDate(),
@@ -34,7 +35,7 @@ const parser = (
 					width: row[4],
 					cutLength: isNaN(row[6]) ? 0 : row[6],
 					holeQuantity: isNaN(row[8]) ? 0 : row[8],
-					holeSizes: [0], // row[9],
+					holeSizes: ['0'], // row[9],
 					// id: row[0],
 					length: row[11],
 					name: row[12],
