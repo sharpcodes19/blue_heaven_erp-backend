@@ -4,10 +4,7 @@ import uploadFiles from '../../../controllers/file/upload'
 import parser from '../../../controllers/products/abolt/xlsx/parser'
 import postCallback from '../../../controllers/products/abolt/post'
 
-const xlsx = (
-	req: Request,
-	res: Response<ResponseBaseProps<Array<string>>>
-) => {
+const xlsx = (req: Request, res: Response<ResponseBaseProps<Array<string>>>) => {
 	if (!req.body)
 		return res.status(400).send({
 			date: new Date(),
@@ -33,8 +30,7 @@ const xlsx = (
 				},
 				(product) => {
 					postCallback(product, (err) => {
-						if (err)
-							messages.push(`Cannot parse product: ${JSON.stringify(product)}`)
+						if (err) messages.push(`Cannot parse product: ${JSON.stringify(product)}`)
 					})
 				}
 			)

@@ -186,4 +186,7 @@ type AnchorBoltProps = {
 	totalPerSet?: string
 	totalPrice?: string
 	csvSource?: string
+	weight?: string
+	cutLength?: string
+	pcsPerLength?: string
 }

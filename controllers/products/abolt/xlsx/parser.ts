@@ -35,7 +35,10 @@ const parser = (
 					price: row[6],
 					steel: row[1],
 					thread: row[5],
-					totalPerSet: row[13]
+					totalPerSet: row[13],
+					cutLength: row[15],
+					pcsPerLength: row[16],
+					weight: row[17]
 				})
 			})
 			.on('error', (err) => {

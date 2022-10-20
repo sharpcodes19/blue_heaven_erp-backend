@@ -17,7 +17,10 @@ const schema = new Mongoose.Schema<AnchorBoltProps>(
 		fWQuantity: String,
 		totalPerSet: String,
 		totalPrice: String,
-		csvSource: String
+		csvSource: String,
+		weight: String,
+		cutLength: String,
+		pcsPerLength: String
 	},
 	{
 		timestamps: true
