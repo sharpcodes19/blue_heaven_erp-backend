@@ -5,33 +5,11 @@ export type AnchorBoltQuery = {
 	from?: string
 	to?: string
 	sort?: string
-	diameter?: string
-	steel?: string
-	inches?: string
-	mm?: string
-	bend?: string
-	thread?: string
-	hexNut?: string
-	fW?: string
-	price?: string
-}
+} & AnchorBoltProps
 
 const findAsync = async (
 	_id: string | null,
-	{
-		bend,
-		diameter,
-		from,
-		inches,
-		mm,
-		sort,
-		steel,
-		thread,
-		to,
-		hexNut,
-		fW,
-		price
-	}: AnchorBoltQuery
+	{ from, sort, to }: AnchorBoltQuery
 ): Promise<Array<AnchorBoltProps>> => {
 	return model
 		.find({
@@ -39,9 +17,7 @@ const findAsync = async (
 				from
 					? {
 							createdAt: {
-								$gte: Moment(from, process.env.DATE_FORMAT)
-									.startOf('day')
-									.toDate()
+								$gte: Moment(from, process.env.DATE_FORMAT).startOf('day').toDate()
 							}
 					  }
 					: {},
@@ -52,19 +28,25 @@ const findAsync = async (
 							}
 					  }
 					: {},
-				diameter ? { diameter } : {},
-				steel ? { steel } : {},
-				inches ? { lengthByInches: inches } : {},
-				mm ? { lengthByMillimeter: mm } : {},
-				thread ? { thread } : {},
-				bend ? { bend } : {},
-				hexNut ? { hexNut } : {},
-				fW ? { fW } : {},
-				price ? { price } : {},
 				_id ? { _id } : {}
 			]
 		})
 		.sort({ createdAt: sort || 'asc' })
 }
 
-export { findAsync }
+const findOneAsync = async (query: AnchorBoltProps): Promise<AnchorBoltProps | null> => {
+	return model.findOne({
+		$and: [
+			{ diameter: query.diameter },
+			{ steel: query.steel },
+			// { lengthByInches: query.inches },
+			{ lengthByMillimeter: query.lengthByMillimeter },
+			{ thread: query.thread },
+			{ bend: query.bend },
+			{ hexNut: query.hexNut },
+			{ fW: query.fW }
+		]
+	})
+}
+
+export { findAsync, findOneAsync }

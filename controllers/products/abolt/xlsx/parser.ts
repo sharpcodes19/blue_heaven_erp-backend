@@ -24,21 +24,21 @@ const parser = (
 			.on('data', (row) => {
 				cb({
 					csvSource: path,
-					bend: row[4],
-					diameter: row[0],
-					fW: row[10],
-					fWPrice: row[11],
-					hexNut: row[7],
-					hexNutPrice: row[8],
-					lengthByInches: row[2],
-					lengthByMillimeter: row[3],
-					price: row[6],
-					steel: row[1],
-					thread: row[5],
-					totalPerSet: row[13],
-					cutLength: row[15],
-					pcsPerLength: row[16],
-					weight: row[17]
+					bend: row[4].trim(),
+					diameter: row[0].trim(),
+					fW: row[10].trim(),
+					fWPrice: row[11].trim(),
+					hexNut: row[7].trim(),
+					hexNutPrice: row[8].trim(),
+					lengthByInches: row[2].trim(),
+					lengthByMillimeter: row[3].trim(),
+					price: row[6].trim(),
+					steel: row[1].trim(),
+					thread: row[5].trim(),
+					totalPerSet: row[13].trim(),
+					cutLength: row[15].trim(),
+					pcsPerLength: row[16].trim(),
+					weight: row[17].trim()
 				})
 			})
 			.on('error', (err) => {

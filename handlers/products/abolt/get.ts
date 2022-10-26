@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
 import {
 	AnchorBoltQuery,
-	findAsync
+	findAsync,
+	findOneAsync
 } from '../../../controllers/products/abolt/get'
 
 type Params = {
@@ -29,20 +30,18 @@ const getById = async (
 			})
 		return res.send({
 			date: new Date(),
-			message: `ABolt with ID of ${_id} from ${from || 'beginning'} to ${
-				to || 'end'
-			}`,
+			message: `ABolt with ID of ${_id} from ${from || 'beginning'} to ${to || 'end'}`,
 			packet: packet[0]
 		})
 	} catch (err) {
 		console.error(err)
 		res.status(500).send({
 			date: new Date(),
-			message:
-				'Server error. Please debug the system to see what problems were occuring.'
+			message: 'Server error. Please debug the system to see what problems were occuring.'
 		})
 	}
 }
+
 const getAll = async (
 	req: Request<{}, unknown, unknown, AnchorBoltQuery>,
 	res: Response<ResponseBaseProps<Array<AnchorBoltProps>>>
@@ -60,10 +59,31 @@ const getAll = async (
 		console.error(err)
 		res.status(500).send({
 			date: new Date(),
-			message:
-				'Server error. Please debug the system to see what problems were occuring.'
+			message: 'Server error. Please debug the system to see what problems were occuring.'
 		})
 	}
 }
 
-export { getById, getAll }
+const getOne = async (
+	req: Request<{}, unknown, unknown, AnchorBoltQuery>,
+	res: Response<ResponseBaseProps<AnchorBoltProps | null>>
+) => {
+	const { query } = req
+	const { from, to } = query
+	try {
+		const packet: AnchorBoltProps | null = await findOneAsync(query)
+		res.send({
+			date: new Date(),
+			message: 'ABolt with selected specification.',
+			packet
+		})
+	} catch (err) {
+		console.error(err)
+		res.status(500).send({
+			date: new Date(),
+			message: 'Server error. Please debug the system to see what problems were occuring.'
+		})
+	}
+}
+
+export { getById, getAll, getOne }
