@@ -8,7 +8,7 @@ const makeId = (subLength: number) => {
 	for (let i = 0; i < subLength; i++) {
 		result += characters.charAt(Math.floor(Math.random() * charactersLength))
 	}
-	return `${Date.now().toString().substring(1, 3)}${result.toUpperCase()}`.trim()
+	return `${Date.now().toString().substring(1, 5)}${result.toUpperCase()}`.trim()
 }
 
 schema.pre('save', function (next) {
