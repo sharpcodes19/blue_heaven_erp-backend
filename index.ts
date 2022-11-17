@@ -26,13 +26,26 @@ const io = new Server<
 	SocketData
 >(server, {
 	cors: {
-		origin: process.env.CORS_ORIGIN
+		origin: '*'
 	}
 })
 
 app.use(
 	cors({
-		origin: process.env.CORS_ORIGIN
+		origin: '*',
+		allowedHeaders: [
+			'X-CSRF-Token',
+			'X-Requested-With',
+			'Accept',
+			'Accept-Version',
+			'Content-Length',
+			'Content-MD5',
+			'Content-Type',
+			'Date',
+			'X-Api-Version'
+		],
+		methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
+		credentials: true
 	})
 )
 app.use(express.json())
