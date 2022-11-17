@@ -1,4 +1,5 @@
 import Moment from 'moment'
+import { SortOrder } from 'mongoose'
 import model from '../../../models/inventory/raw_material'
 
 export type RawMaterialFindKeywords = {
@@ -13,7 +14,7 @@ const findAsync = async (
 	{ _id, diameter, type, weight, name }: RawMaterialFindKeywords,
 	from?: string,
 	to?: string,
-	sort?: string
+	sort?: SortOrder
 ): Promise<Array<RawMaterialProps>> => {
 	return model
 		.find({

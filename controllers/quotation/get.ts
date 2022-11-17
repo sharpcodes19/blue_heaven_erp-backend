@@ -1,7 +1,13 @@
 import Moment from 'moment'
+import { SortOrder } from 'mongoose'
 import model from '../../models/quotation'
 
-const findAsync = async (_id?: string, from?: string, to?: string, sort?: string): Promise<Array<QuotationProps>> => {
+const findAsync = async (
+	_id?: string,
+	from?: string,
+	to?: string,
+	sort?: SortOrder
+): Promise<Array<QuotationProps>> => {
 	return model
 		.find({
 			$and: [

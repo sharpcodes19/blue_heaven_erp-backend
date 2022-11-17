@@ -1,10 +1,11 @@
 import Moment from 'moment'
+import { SortOrder } from 'mongoose'
 import model from '../../../models/products/abolt'
 
 export type AnchorBoltQuery = {
 	from?: string
 	to?: string
-	sort?: string
+	sort?: SortOrder
 } & AnchorBoltProps
 
 const findAsync = async (

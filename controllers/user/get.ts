@@ -1,8 +1,14 @@
 import Moment from 'moment'
 import bcrypt from 'bcrypt'
 import model from '../../models/user'
+import { SortOrder } from 'mongoose'
 
-const findAsync = async (_id?: string, from?: string, to?: string, sort?: string): Promise<Array<UserProps>> => {
+const findAsync = async (
+	_id?: string,
+	from?: string,
+	to?: string,
+	sort?: SortOrder
+): Promise<Array<UserProps>> => {
 	return model
 		.find({
 			$and: [

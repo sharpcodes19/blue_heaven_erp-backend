@@ -1,11 +1,12 @@
 import Moment from 'moment'
+import { SortOrder } from 'mongoose'
 import model from '../../models/order'
 
 const findAsync = async (
 	_id?: string,
 	from?: string,
 	to?: string,
-	sort?: string
+	sort?: SortOrder
 ): Promise<Array<OrderProps>> => {
 	return model
 		.find({
