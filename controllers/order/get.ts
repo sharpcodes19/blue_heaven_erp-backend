@@ -1,21 +1,26 @@
 import Moment from 'moment'
 import model from '../../models/order'
 
-const findAsync = async (_id?: string, from?: string, to?: string, sort?: string): Promise<Array<OrderProps>> => {
+const findAsync = async (
+	_id?: string,
+	from?: string,
+	to?: string,
+	sort?: string
+): Promise<Array<OrderProps>> => {
 	return model
 		.find({
 			// 'items.0': { $exists: true },
 			$and: [
 				from
 					? {
-							createdAt: {
+							orderDate: {
 								$gte: Moment(from, process.env.DATE_FORMAT).startOf('day').toDate()
 							}
 					  }
 					: {},
 				to
 					? {
-							createdAt: {
+							orderDate: {
 								$lte: Moment(to, process.env.DATE_FORMAT).endOf('day').toDate()
 							}
 					  }
@@ -23,7 +28,7 @@ const findAsync = async (_id?: string, from?: string, to?: string, sort?: string
 				_id ? { _id } : {}
 			]
 		})
-		.sort({ createdAt: sort || 'asc' })
+		.sort({ orderDate: sort || 'asc' })
 }
 
 export { findAsync }
