@@ -1,7 +1,5 @@
 {
 	"version": 2,
-	"buildCommand": "yarn build",
-	"devCommand": "yarn dev",
 	"outputDirectory": "dist",
 	"builds": [
 		{
@@ -12,7 +10,7 @@
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "dist/index.js"
+			"dest": "index.js"
 		}
 	]
 }
