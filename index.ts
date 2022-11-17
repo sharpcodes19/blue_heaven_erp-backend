@@ -32,20 +32,20 @@ const io = new Server<
 
 app.use(
 	cors({
-		origin: '*',
-		allowedHeaders: [
-			'X-CSRF-Token',
-			'X-Requested-With',
-			'Accept',
-			'Accept-Version',
-			'Content-Length',
-			'Content-MD5',
-			'Content-Type',
-			'Date',
-			'X-Api-Version'
-		],
-		methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
-		credentials: true
+		origin: '*'
+		// allowedHeaders: [
+		// 	'X-CSRF-Token',
+		// 	'X-Requested-With',
+		// 	'Accept',
+		// 	'Accept-Version',
+		// 	'Content-Length',
+		// 	'Content-MD5',
+		// 	'Content-Type',
+		// 	'Date',
+		// 	'X-Api-Version'
+		// ],
+		// methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
+		// credentials: true
 	})
 )
 app.use(express.json())
