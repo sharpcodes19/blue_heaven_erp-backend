@@ -15,7 +15,7 @@
 	"license": "ISC",
 	"icon": "public/favicon.ico",
 	"engines": {
-		"yarn": "1.x"
+		"node": "14.x"
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
