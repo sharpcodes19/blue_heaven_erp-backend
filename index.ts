@@ -30,11 +30,11 @@ const io = new Server<
 	}
 })
 
-// app.use(
-// 	cors({
-// 		origin: process.env.CORS_ORIGIN
-// 	})
-// )
+app.use(
+	cors({
+		origin: process.env.CORS_ORIGIN
+	})
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
