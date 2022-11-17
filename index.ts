@@ -30,24 +30,24 @@ const io = new Server<
 	}
 })
 
-app.use(
-	cors({
-		origin: '*'
-		// allowedHeaders: [
-		// 	'X-CSRF-Token',
-		// 	'X-Requested-With',
-		// 	'Accept',
-		// 	'Accept-Version',
-		// 	'Content-Length',
-		// 	'Content-MD5',
-		// 	'Content-Type',
-		// 	'Date',
-		// 	'X-Api-Version'
-		// ],
-		// methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
-		// credentials: true
-	})
-)
+// app.use(
+// 	cors({
+// 		origin: '*',
+// 		allowedHeaders: [
+// 			'X-CSRF-Token',
+// 			'X-Requested-With',
+// 			'Accept',
+// 			'Accept-Version',
+// 			'Content-Length',
+// 			'Content-MD5',
+// 			'Content-Type',
+// 			'Date',
+// 			'X-Api-Version'
+// 		],
+// 		methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
+// 		credentials: true
+// 	})
+// )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(process.env.PUBLIC_FOLDER_PATH!))
